@@ -1,9 +1,12 @@
 package com.example.virusdisplay;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
@@ -31,6 +34,8 @@ public class ListAppActivity extends AppCompatActivity implements OnClickListene
     public String[] can_see_location_info = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"};
 
 
+
+
     public boolean results = false;
     public int counter;
     public int c2;
@@ -55,7 +60,11 @@ public class ListAppActivity extends AppCompatActivity implements OnClickListene
         setContentView(R.layout.splash);
 
         //listAppActivityPresenter = new MainListAppActivityPresenter(this);
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
 
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         final ListAppActivity something = this;
 

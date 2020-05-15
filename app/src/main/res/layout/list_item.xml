@@ -44,7 +44,9 @@
         android:layout_height="35dp"
         android:layout_marginTop="17dp"
         android:layout_marginRight="10dp"
-
+        android:background="@drawable/round_textview"
+        android:textColor="@android:color/white"
+        android:gravity="center"
         android:text="" />
 
 

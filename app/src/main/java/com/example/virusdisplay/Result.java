@@ -14,6 +14,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.os.Bundle;
@@ -54,6 +55,16 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+
+        androidx.appcompat.app.ActionBar actionBar;
+        actionBar = getSupportActionBar();
+
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        actionBar.setTitle("SEE PERMISSION INFORMATION");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_screen_slide_page);
 
@@ -73,7 +84,8 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
 
 
         lista = can_cost_money_obj;
-        CustomAdapter adapter = new CustomAdapter(Result.this, lista);
+        Sort(lista);
+        CustomAdapter adapter = new CustomAdapter(Result.this, appovi);
 
         listView.setAdapter(adapter);
 
@@ -102,6 +114,18 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
 
     }
 
+    public void Sort(ArrayList<PInfo> lista){
+        appovi = lista;
+
+        Collections.sort(appovi, new Comparator<PInfo>() {
+            public int compare(PInfo one, PInfo other) {
+
+                Integer i = new Integer(other.critical.size());
+
+                return i.compareTo(one.critical.size());
+            }
+        });
+    }
 
 
     @Override
@@ -306,7 +330,7 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
                     //critical.setText(""+1000);
                     //critical.setText(""+data.get(position).critical.size());
                     critical.setText(""+(data.get(position).critical.size()*100/19)+"%");
-                    critical.setBackgroundColor(Color.parseColor(getClor(data.get(position).critical.size()*100/19)));
+                    //critical.setBackgroundColor(Color.parseColor(getClor(data.get(position).critical.size()*100/19)));
 
                 } catch (PackageManager.NameNotFoundException e) {
                     // TODO Auto-generated catch block

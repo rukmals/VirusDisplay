@@ -1,2 +1,0 @@
-# VirusDisplay
- virus scanning app
