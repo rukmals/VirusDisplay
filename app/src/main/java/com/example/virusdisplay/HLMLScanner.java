@@ -61,11 +61,7 @@ public class HLMLScanner extends AppCompatActivity {
         actions = (TextView) findViewById(R.id.action);
 
 
-        /*final TextView v_text = (TextView) findViewById(R.id.v_text);
-        final TextView num_v = (TextView) findViewById(R.id.num_v);
-        final ProgressBar progress = (ProgressBar) findViewById(R.id.progress);
-        final ProgressBar loader = (ProgressBar) findViewById(R.id.loader);
-        final TextView actions = (TextView) findViewById(R.id.action);*/
+
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_REQUEST_STORAGE);
@@ -76,23 +72,8 @@ public class HLMLScanner extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 performFileSearch();
-               /* textFile=new File(Environment.getExternalStorageDirectory(),"Android-Antivirus.html");
-                StringBuilder text = new StringBuilder();
-                try{
-                    BufferedReader br = new BufferedReader(new FileReader(textFile));
-                    String line;
-                    //for (int i=0;i<10;i++){
-                    while((line = br.readLine())!=null){
-                        //line = br.readLine();
-                        text.append(line);
-                        text.append("\n");
-                    }
-                    br.close();
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                }
-                tv_output.setText(text.toString());*/
+
+
 
             }
 
@@ -179,10 +160,7 @@ public class HLMLScanner extends AppCompatActivity {
             String line;
             //int i = 0;
             while ((line = signature_reader.readLine()) != null) {
-                //reader = new BufferedReader(new InputStreamReader(getAssets().open("file.txt")));
-                //text.append(line);
-                //text.append("\n");
-                //c++;
+
 
                 String[] virus = line.split("=");
 
@@ -197,13 +175,6 @@ public class HLMLScanner extends AppCompatActivity {
                 {
                     // virusfound
                     num_virus++;
-                    //viruses.add(virusname);
-                    //num_v.setText("" + num_virus);
-                    //if(num_virus >= 1) v_text.setText("viruses found!");
-                    //MediaPlayer mPlayer2;
-                    //mPlayer2 = MediaPlayer.create(context, R.raw.found);
-                    //mPlayer2.start();
-                    //loader.setProgress(i);
 
 
                 }

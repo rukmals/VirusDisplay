@@ -29,38 +29,12 @@ import java.io.InputStream;
 import android.content.Context;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.widget.Toolbar;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Iterator;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Environment;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 
 
 public class Scanner extends AppCompatActivity {
@@ -96,11 +70,7 @@ public class Scanner extends AppCompatActivity {
         loader = (ProgressBar) findViewById(R.id.loader);
         actions = (TextView) findViewById(R.id.action);
 
-        /*final TextView v_text = (TextView) findViewById(R.id.v_text);
-        final TextView num_v = (TextView) findViewById(R.id.num_v);
-        final ProgressBar progress = (ProgressBar) findViewById(R.id.progress);
-        final ProgressBar loader = (ProgressBar) findViewById(R.id.loader);
-        final TextView actions = (TextView) findViewById(R.id.action);*/
+
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_REQUEST_STORAGE);
@@ -112,82 +82,7 @@ public class Scanner extends AppCompatActivity {
             public void onClick(View v) {
                 performFileSearch();
 
-                //text.setEnabled(false);
-                /*extFile=new File(Environment.getExternalStorageDirectory(),"file.txt");
-                StringBuilder text = new StringBuilder();
-                try{
-                    BufferedReader br = new BufferedReader(new FileReader(textFile));
-                    String line;
-                    //for (int i=0;i<10;i++){
-                    while((line = br.readLine())!=null){
-                        //line = br.readLine();
-                        text.append(line);
-                        text.append("\n");
-                    }
-                    br.close();
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                }
-                tv_output.setText(text.toString());*/
-                //String text =SignatureUnpacker();
-                /*StringBuilder text = new StringBuilder(); /// where i start comment
-                BufferedReader reader, signature_reader;
-                int num_virus= 0;
-                try {
-                    reader = new BufferedReader(new InputStreamReader(getAssets().open("file.txt")));
-                    //reader = new BufferedReader(new InputStreamReader(getAssets().open("file.docx")));
-                    String strLine = reader.readLine();
-                    text.append(strLine);
-                    signature_reader = new BufferedReader(new InputStreamReader(getAssets().open("signature.db")));
-                    String line;
-                    //int i = 0;
-                    while ((line = signature_reader.readLine()) != null) {
 
-                //reader = new BufferedReader(new InputStreamReader(getAssets().open("file.txt")));
-                        //text.append(line);
-                        //text.append("\n");
-                        //c++;
-
-                        String[] virus = line.split("=");
-
-                        virusname = virus[0];
-                        String virussig = virus[1];
-                        String[] virussigx = virussig.split(" ");
-                        virussig = virussigx[0];
-
-                        int index = strLine.indexOf(virussig);
-                        progress.setProgress(i*100/20);
-                        if (index != -1) // -1 means "not found"
-                        {
-                            // virusfound
-                            num_virus++;
-                            //viruses.add(virusname);
-                            num_v.setText("" + num_virus);
-                            if(num_virus >= 1) v_text.setText("viruses found!");
-                            //MediaPlayer mPlayer2;
-                            //mPlayer2 = MediaPlayer.create(context, R.raw.found);
-                            //mPlayer2.start();
-                            //loader.setProgress(i);
-
-                        }
-                        //c++;
-                        //publishProgress((i * 100) / 21);
-                        i++;
-
-
-
-                    }
-                    reader.close();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                //String text =readFile();
-                tv_output.setText(virusname);
-                actions.setText("Scan Complete");
-                loader.setVisibility(View.GONE);*/
-
-                //tv_output.setText(String.valueOf(num_virus));
 
 
             }
@@ -247,57 +142,7 @@ public class Scanner extends AppCompatActivity {
                 //tv_output.setText(fn);
                 File file = new File(Environment.getExternalStorageDirectory() + "/" + path);
                 SignatureUnpacker(file);
-                /*StringBuilder text = new StringBuilder(); /// where i start comment
-                BufferedReader reader, signature_reader;
-                int num_virus= 0;
-                try {
-                    //reader = new BufferedReader(new InputStreamReader(getAssets().open("file.txt")));
-                    reader = new BufferedReader(new FileReader(file));
-                    String strLine = reader.readLine();
-                    text.append(strLine);
-                    signature_reader = new BufferedReader(new InputStreamReader(getAssets().open("signature.db")));
-                    String line;
-                    //int i = 0;
-                    while ((line = signature_reader.readLine()) != null) {
-                        //reader = new BufferedReader(new InputStreamReader(getAssets().open("file.txt")));
-                        //text.append(line);
-                        //text.append("\n");
-                        //c++;
 
-                        String[] virus = line.split("=");
-
-                        virusname = virus[0];
-                        String virussig = virus[1];
-                        String[] virussigx = virussig.split(" ");
-                        virussig = virussigx[0];
-
-                        int index = strLine.indexOf(virussig);
-                        progress.setProgress(i*100/20);
-                        if (index != -1) // -1 means "not found"
-                        {
-                            // virusfound
-                            num_virus++;
-                            //viruses.add(virusname);
-                            num_v.setText("" + num_virus);
-                            if(num_virus >= 1) v_text.setText("viruses found!");
-                            //MediaPlayer mPlayer2;
-                            //mPlayer2 = MediaPlayer.create(context, R.raw.found);
-                            //mPlayer2.start();
-                            //loader.setProgress(i);
-                        }
-                        //c++;
-                        //publishProgress((i * 100) / 21);
-                        i++;
-
-                    }
-                    reader.close();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                //String text =readFile();
-                tv_output.setText(virusname);
-                actions.setText("Scan Complete");
-                loader.setVisibility(View.GONE);*/
             }
         }
     }
@@ -347,13 +192,6 @@ public class Scanner extends AppCompatActivity {
                 {
                     // virusfound
                     num_virus++;
-                    //viruses.add(virusname);
-                    //num_v.setText("" + num_virus);
-                    //if(num_virus >= 1) v_text.setText("viruses found!");
-                    //MediaPlayer mPlayer2;
-                    //mPlayer2 = MediaPlayer.create(context, R.raw.found);
-                    //mPlayer2.start();
-                    //loader.setProgress(i);
 
 
                 }

@@ -1,8 +1,11 @@
 package com.example.virusdisplay;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
         device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //performFileSearch();
-                //fileScanner();
+
                 ListAppAcitivity();
             }
         });
@@ -31,11 +33,16 @@ public class MainActivity extends AppCompatActivity {
         file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //performFileSearch();
-                //fileScanner();
+
                 SelectType();
             }
         });
+
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+        actionBar.setBackgroundDrawable(colorDrawable);
     }
 
 

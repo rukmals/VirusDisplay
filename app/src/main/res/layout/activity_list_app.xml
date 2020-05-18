@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ListAppActivity">
 
+    <TextView
+        android:id="@+id/critical"
+        android:layout_width="196dp"
+        android:layout_height="76dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

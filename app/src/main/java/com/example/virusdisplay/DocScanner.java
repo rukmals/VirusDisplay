@@ -84,11 +84,6 @@ public class DocScanner extends AppCompatActivity {
         loader = (ProgressBar) findViewById(R.id.loader);
         actions = (TextView) findViewById(R.id.action);
 
-        /*final TextView v_text = (TextView) findViewById(R.id.v_text);
-        final TextView num_v = (TextView) findViewById(R.id.num_v);
-        final ProgressBar progress = (ProgressBar) findViewById(R.id.progress);
-        final ProgressBar loader = (ProgressBar) findViewById(R.id.loader);
-        final TextView actions = (TextView) findViewById(R.id.action);*/
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_REQUEST_STORAGE);
@@ -165,14 +160,7 @@ public class DocScanner extends AppCompatActivity {
                     SignatureUnpacker(file);
 
                     String fn = filex.getName();
-                    /*XWPFDocument doc = new XWPFDocument(new FileInputStream(file.getAbsolutePath()));
-                    //POITextExtractor extractor = ExtractorFactory.createExtractor(file);
-                    //XWPFWordExtractor extra = new XWPFWordExtractor(doc);
-                    List<XWPFParagraph> paragraphList = Arrays.asList(doc.getParagraphs());
 
-                    for (XWPFParagraph xwpfParagraph : paragraphList) {
-                        tv_output.setText(xwpfParagraph.getText());*/
-                    //}
 
 
                 } catch (Exception e) {
@@ -180,22 +168,7 @@ public class DocScanner extends AppCompatActivity {
                 }
 
 
-                //InputStreamReader doc = new InputStreamReader(getAssets().open("file.txt"));
-                /*String str = Environment.getExternalStorageDirectory()+"/file.docx";
-                //File file = new File(Environment.getExternalStorageDirectory()+"/"+path);
-                File file = new File(str);
-                try {
-                     InputStream fis = new InputStream(file);
-                     XWPFDocument doc = new XWPFDocument(fis);
-                     XWPFWordExtractor docE = new XWPFWordExtractor(doc);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
 
-
-                //SignatureUnpacker(file);
             }
         }
     }
@@ -229,10 +202,7 @@ public class DocScanner extends AppCompatActivity {
             String line;
             //int i = 0;
             while ((line = signature_reader.readLine()) != null) {
-                //reader = new BufferedReader(new InputStreamReader(getAssets().open("file.txt")));
-                //text.append(line);
-                //text.append("\n");
-                //c++;
+
 
                 String[] virus = line.split("=");
 
@@ -247,19 +217,12 @@ public class DocScanner extends AppCompatActivity {
                 {
                     // virusfound
                     num_virus++;
-                    //viruses.add(virusname);
-                    //num_v.setText("" + num_virus);
-                    //if(num_virus >= 1) v_text.setText("viruses found!");
-                    //MediaPlayer mPlayer2;
-                    //mPlayer2 = MediaPlayer.create(context, R.raw.found);
-                    //mPlayer2.start();
-                    //loader.setProgress(i);
+
 
 
                 }
 
-                //c++;
-                //publishProgress((i * 100) / 21);
+
                 i++;
 
             }

@@ -1,9 +1,12 @@
 package com.example.virusdisplay;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
@@ -21,14 +24,18 @@ import java.util.List;
 
 public class ListAppActivity extends AppCompatActivity implements OnClickListener{
 
-    public String[] can_cost_money = {"android.permission.INTERNET","android.permission.READ_PHONE_STATE","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.RECEIVE_SMS","android.permission.READ_CONTACTS",
+    public String[] can_see_location_info = { "android.permission.INTERNET","android.permission.READ_PHONE_STATE","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.RECEIVE_SMS","android.permission.READ_CONTACTS",
             "android.permission.WRITE_SMS","android.permission.SEND_SMS","android.permission.READ_SMS","android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"};
-    public String[] can_see_personal_info = {"android.permission.READ_CALENDAR", "android.permission.READ_CALL_LOG", "android.permission.BLUETOOTH","android.permission.WRITE_SETTINGS",
-            "android.permission.READ_PROFILE", "android.permission.READ_SOCIAL_STREAM","android.permission.CALL_PHONE","android.permission.FLASHLIGHT", "android.permission.NFC"};
-    public String[] can_impact_battery = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.BLUETOOTH",
-            "android.permission.CALL_PHONE", "android.permission.FLASHLIGHT", "android.permission.NFC"};
-    public String[] can_change_system = {"android.permission.WRITE_SETTINGS"};
-    public String[] can_see_location_info = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"};
+    public String[] can_see_personal_info = { };//"android.permission.WRITE_SETTINGS","android.permission.BLUETOOTH",, "android.permission.NFC"
+    public String[] can_impact_battery = { "android.permission.BLUETOOTH","android.permission.NFC"};//"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION",, "android.permission.FLASHLIGHT", "android.permission.NFC""android.permission.CALL_PHONE"
+    public String[] can_change_system = {"android.permission.WRITE_SETTINGS","android.permission.READ_CALENDAR","android.permission.BLUETOOTH","android.permission.NFC"};//"android.permission.READ_CALENDAR"
+    //public String[] can_cost_money= {"android.permission.READ_CALL_LOG"};//"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"
+    public String[] can_cost_money= {"android.permission.READ_CALL_LOG","android.permission.INTERNET","android.permission.READ_PHONE_STATE","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.RECEIVE_SMS","android.permission.READ_CONTACTS",
+            "android.permission.WRITE_SMS","android.permission.SEND_SMS","android.permission.READ_SMS","android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"};
+
+
+    //,"android.permission.FLASHLIGHT""android.permission.READ_PROFILE","android.permission.READ_SOCIAL_STREAM","android.permission.CALL_PHONE"
+
 
 
     public boolean results = false;
@@ -55,7 +62,11 @@ public class ListAppActivity extends AppCompatActivity implements OnClickListene
         setContentView(R.layout.splash);
 
         //listAppActivityPresenter = new MainListAppActivityPresenter(this);
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
 
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         final ListAppActivity something = this;
 
@@ -362,11 +373,7 @@ public class ListAppActivity extends AppCompatActivity implements OnClickListene
         }
         // go to results
         else{
-//			Log.v("VELICINA" , "VELICINA "+can_cost_money_obj.size());
-//			Log.v("VELICINA" , "VELICINA "+can_see_personal_info_obj.size());
-//			Log.v("VELICINA" , "VELICINA "+can_impact_battery_obj.size());
-//			Log.v("VELICINA" , "VELICINA "+can_change_system_obj.size());
-//			Log.v("VELICINA" , "VELICINA "+can_see_location_info_obj.size());
+
 
 
             Intent myIntent = new Intent(ListAppActivity.this, Result.class);

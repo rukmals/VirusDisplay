@@ -12,8 +12,10 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.os.Bundle;
@@ -21,10 +23,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,18 +56,28 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
     //MainContructor.ResultPresenter resultPresenter;
 
     ListView listView;
+
     public ArrayList<PInfo> appovi;
+
+
+    int number;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
+        androidx.appcompat.app.ActionBar actionBar;
+        actionBar = getSupportActionBar();
+
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        actionBar.setTitle("SEE PERMISSION INFORMATION");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_screen_slide_page);
 
-
         listView = (ListView) findViewById(R.id.Lista);
-
-
-
 
         //resultPresenter = new MainResultPresenter(this);
 
@@ -73,35 +89,58 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
 
 
         lista = can_cost_money_obj;
-        CustomAdapter adapter = new CustomAdapter(Result.this, lista);
+        Sort(lista);
+        final CustomAdapter adapter = new CustomAdapter(Result.this, appovi);
 
         listView.setAdapter(adapter);
 
-        /*mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
-        final ActionBar actionBar = getActionBar();
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        number = adapter.getCount();
 
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mPagerAdapter);
 
-        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //for (int i=0;i<10;i++){
+                int count = adapter.getCount();
+                for(int i=0;i<count+1;i++){
+                    if(position==i){
+                        //Toast.makeText(Result.this,lista.get(position).appname ,Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(),ListPermission.class);
+
+                        Bundle bundle = new Bundle();
+                        //bundle.putInt("size",20);
+                        intent.putExtras(bundle);
+                        //bundle.putStringArrayList("critical",lista.get(position).critical);
+                        //intent.putExtra("size1",String.valueOf(lista.get(position).critical.size()));
+                        intent.putExtra("size1",lista.get(position).critical);
+                        startActivity(intent);
+                    }
+               }
+
+
             }
         });
 
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mPagerAdapter.getCount(); i++) {
-            actionBar.addTab(actionBar.newTab().setText(mPagerAdapter.getPageTitle(i)).setTabListener(this));
-            //getPagerAdapter(actionBar,i);
-        }*/
+
+
 
 
     }
 
+
+    public void Sort(ArrayList<PInfo> lista){
+        appovi = lista;
+
+        Collections.sort(appovi, new Comparator<PInfo>() {
+            public int compare(PInfo one, PInfo other) {
+
+                Integer i = new Integer(other.critical.size());
+
+                return i.compareTo(one.critical.size());
+            }
+        });
+    }
 
 
     @Override
@@ -124,121 +163,14 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
     }
 
 
-    public void getPagerAdapter(ActionBar actionBar, int i) {
-        actionBar.addTab(actionBar.newTab().setText(mPagerAdapter.getPageTitle(i)).setTabListener(this));
-    }
+
 
 
     /**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
      */
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
 
-        @Override
-        public Fragment getItem(int position) {
-
-            //if(position =)
-            //can_cost_money_obj
-
-            switch(position){
-                case 0:
-                    lista = can_cost_money_obj;
-                    break;
-	    		/*case 1:
-	    			lista = can_see_personal_info_obj;
-	    		break;
-	    		case 2:
-	    			lista = can_impact_battery_obj;
-	    		break;
-	    		case 3:
-	    			lista = can_change_system_obj;
-	    		break;
-	    		case 4:
-	    			lista = can_see_location_info_obj;
-	    		break;*/
-            }
-
-            return new ScreenSlidePageFragment(lista);
-
-        }
-
-        @Override
-        public int getCount() {
-            return 1;
-        }
-
-        public CharSequence getPageTitle(int position) {
-            switch(position){
-                case 0:
-                    title = getText("");
-                    break;
-        		/*case 1:
-        			title = "CAN SEE PERSONAL INFO";
-        		break;
-        		case 2:
-        			title = "CAN IMPACT BATTERY";
-        		break;
-        		case 3:
-        			title = "CAN CHANGE SYSTEM";
-        		break;
-        		case 4:
-        			title = "CAN SEE LOCATION INFO";
-        		break;*/
-            }
-            return title;
-        }
-    }
-
-
-    public class ScreenSlidePageFragment extends Fragment{
-
-        public ArrayList<PInfo> appovi;
-        public ListView Lista;
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
-
-
-            CustomAdapter adapter = new CustomAdapter(getActivity(), appovi);
-            ListView Lista = (ListView) rootView.findViewById( R.id.Lista );
-            Lista.setAdapter(adapter);
-
-
-
-            return rootView;
-        }
-
-
-        public ScreenSlidePageFragment(ArrayList<PInfo> lista){
-            appovi = lista;
-
-            Collections.sort(appovi, new Comparator<PInfo>() {
-                public int compare(PInfo one, PInfo other) {
-
-                    Integer i = new Integer(other.critical.size());
-
-                    return i.compareTo(one.critical.size());
-                }
-            });
-        }
-    }
-    public String getClor(int val){
-        String color = "";
-        if (0<= val && val <=60){
-            color="#FF2EC705";
-
-        }
-        if (60< val && val <=100){
-            color="#FFD61919";
-
-        }
-        return color;
-
-    }
 
     /**
      * CUSTOM ADAPTER
@@ -286,7 +218,9 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
             try {
 
                 ImageView slika = (ImageView) convertView.findViewById(R.id.slika);
+                //Button result = (Button) convertView.findViewById(R.id.result);
                 TextView naslov = (TextView) convertView.findViewById(R.id.naslov);
+                //Button naslov = (Button) convertView.findViewById(R.id.naslov);
                 TextView paket = (TextView) convertView.findViewById(R.id.paket);
                 TextView critical = (TextView) convertView.findViewById(R.id.critical);
 
@@ -301,12 +235,14 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
                     icon = getPackageManager().getApplicationIcon(pname);
 
                     slika.setImageDrawable(icon);
+                    //result.setText(data.get(position).appname);
                     naslov.setText(data.get(position).appname);
+
                     paket.setText(data.get(position).pname);
                     //critical.setText(""+1000);
                     //critical.setText(""+data.get(position).critical.size());
-                    critical.setText(""+(data.get(position).critical.size()*100/19)+"%");
-                    critical.setBackgroundColor(Color.parseColor(getClor(data.get(position).critical.size()*100/19)));
+                    critical.setText(""+(data.get(position).critical.size()*100/14)+"%");
+                    //critical.setBackgroundColor(Color.parseColor(getClor(data.get(position).critical.size()*100/19)));
 
                 } catch (PackageManager.NameNotFoundException e) {
                     // TODO Auto-generated catch block

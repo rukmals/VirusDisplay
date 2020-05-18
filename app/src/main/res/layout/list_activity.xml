@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fragment for view pager -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/aaa" >
+
+
+
+
+
+
+        <!--<TextView
+            android:id="@+id/naslov"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:padding="2dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#449def" /> -->
+    <TextView
+        android:id="@+id/paket"
+        android:layout_width="391dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="10dp"
+        android:text="TextView" />
+
+
+
+
+
+
+</LinearLayout>
