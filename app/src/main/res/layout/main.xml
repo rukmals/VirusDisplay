@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000000"
+    android:background="@android:color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:background="@drawable/back"
         android:text="                    SCAN YOUR DEVICE "
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#F8F7F7" />
+        android:textColor="#F8F7F7" /> -->
 
     <!--<ImageView
         android:id="@+id/imageView1"
@@ -83,8 +83,8 @@
         android:text="0 %"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#449def"
-        android:textSize="50dp" />
+        android:textColor="#34373A"
+        android:textSize="40dp" />
 
     <!-- </LinearLayout> -->
 
@@ -92,11 +92,11 @@
     <Button
         android:id="@+id/button1"
         style="@style/ButtonText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="370dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:background="@drawable/btn_blue"
+        android:background="@drawable/roundedbutton"
         android:text="START SCAN" />
 
 

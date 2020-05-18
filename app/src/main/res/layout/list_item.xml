@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:id="@+id/aaa" >
+    android:id="@+id/aaa"
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/slika"
@@ -39,16 +40,49 @@
             android:text="TextView" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/critical"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/round_textview"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:text="" />
+
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:progress="100"
+            android:progressDrawable="@drawable/progressbar_text"
+
+             />
+
+        <TextView
+            android:id="@+id/critical"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="@drawable/round_textview"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+
 
 
 </LinearLayout>

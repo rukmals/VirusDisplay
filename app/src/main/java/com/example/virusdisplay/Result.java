@@ -1,6 +1,8 @@
 package com.example.virusdisplay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -19,6 +21,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +32,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +62,8 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
     ListView listView;
 
     public ArrayList<PInfo> appovi;
+
+    public Handler handler = new Handler();
 
 
     int number;
@@ -129,6 +135,7 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
     }
 
 
+
     public void Sort(ArrayList<PInfo> lista){
         appovi = lista;
 
@@ -163,6 +170,15 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
     }
 
 
+    public String getCol(Integer val){
+        String col;
+        if(val > 50){
+            col = "#FFED0505";
+        }else{
+            col="#FF4BE30B";
+        }
+        return col;
+    }
 
 
 
@@ -224,6 +240,14 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
                 TextView paket = (TextView) convertView.findViewById(R.id.paket);
                 TextView critical = (TextView) convertView.findViewById(R.id.critical);
 
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+
+                //progressBar.setProgress(50);
+
+                /*ProgressBar mProgress = (ProgressBar) findViewById(R.id.progressBar2);
+                mProgress.setVisibility(View.VISIBLE);
+                mProgress.setMax(100);*/
+
                 //LinearLayout view = (LinearLayout) findViewById(R.id.)
 
 
@@ -231,6 +255,10 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
                 Drawable icon;
 
                 try {
+
+                    /*progressBar.getProgress();
+                    progressBar.setMax(100);
+                    progressBar.setProgress(75);*/
 
                     icon = getPackageManager().getApplicationIcon(pname);
 
@@ -242,7 +270,14 @@ public class Result extends AppCompatActivity implements ActionBar.TabListener{
                     //critical.setText(""+1000);
                     //critical.setText(""+data.get(position).critical.size());
                     critical.setText(""+(data.get(position).critical.size()*100/14)+"%");
-                    //critical.setBackgroundColor(Color.parseColor(getClor(data.get(position).critical.size()*100/19)));
+                    //progressBar.setMax(100);
+                    //mProgress.setProgress(50);
+                    //progressBar.setProgress(50);
+                    //critical.setBackgroundColor(Color.parseColor(getCol(data.get(position).critical.size()*100/14)));
+
+                    Drawable unwrapped = AppCompatResources.getDrawable(Result.this,R.drawable.round_textview);
+                    Drawable wrapp = DrawableCompat.wrap(unwrapped);
+                    DrawableCompat.setTint(wrapp,Color.RED);
 
                 } catch (PackageManager.NameNotFoundException e) {
                     // TODO Auto-generated catch block

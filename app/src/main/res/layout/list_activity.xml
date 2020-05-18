@@ -23,9 +23,12 @@
             android:textColor="#449def" /> -->
     <TextView
         android:id="@+id/paket"
-        android:layout_width="391dp"
-        android:layout_height="46dp"
+        android:layout_width="355dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/roundedbutton"
+        style="@style/ButtonText1"
         android:text="TextView" />
 
 

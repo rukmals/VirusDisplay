@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar;
         actionBar = getSupportActionBar();
 
+
+        actionBar.setTitle("SCAN YOUR DEVICE");
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+
         actionBar.setBackgroundDrawable(colorDrawable);
     }
 
